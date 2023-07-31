@@ -16,23 +16,44 @@ Automation Steps:
 Manual steps
 ---
 * Create an S3 bucket - xcftp.lumivero.com
-* Create a user role - xcftp-access-role
-* Create a user policy - xcftp-access-policy
+* Create a user role
+* Create a user policy
+* Create an sftp user
+    * Create Create an sftp user within Secrets Manager service
+    * User record must be of format aws/transfer/s-62e9213fc1384fea9/xcftp where the the username will be xcftp
 
-
-Create an sftp user
+Existing users
 ---
-* Create Create an sftp user within Secrets Manager service
-* User record must be of format aws/transfer/s-62e9213fc1384fea9/xcftp where the the username will be xcftp. For example a new user record would be aws/transfer/s-62e9213fc1384fea9/xcftp2
+* xcftp user
+    * aws/transfer/s-62e9213fc1384fea9/xcftp
+    * xcftp-access-role
+    * xcftp-access-policy
+* xcftp user-reader
+    * aws/transfer/s-62e9213fc1384fea9/xcftp-reader
+    * xcftp-access-role-read
+    * xcftp-access-policy-read
+* xcftp user-uploader (only allow uploads into the upload folder in the S3 bucket)
+    * aws/transfer/s-62e9213fc1384fea9/xcftp-uploader
+    * xcftp-access-role-upload
+    * xcftp-access-policy-upload    
+
+User setup
+---
+Each user created under aws/transfer/s-62e9213fc1384fea9/[username] must have the following secrets setup
+    
+    * Password
+    * Role (e.g. xcftp-access-role-upload ARN)
+    * HomeDirectory (/xcftp.lumivero.com/contents)
+    * PublicKey (key generated for the user using ssh-keygen -t ed25519 -f xcftp-reader -C "username as comment". Store the public key here and private key in onepass)
 
 Connecting to the sftp server
 ---
 ``` 
 # use keys from onepass
-sftp -i xcftp_user.pem xcftp@xcftp.lumivero.com 
+sftp -i xcftp_reader.pem xcftp@xcftp.lumivero.com 
 
 # use password from onepass
-sftp xcftp@xcftp.lumivero.com 
+sftp xcftp-reader@xcftp.lumivero.com 
 ```
 
 Confluence page
