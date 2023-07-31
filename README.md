@@ -24,15 +24,15 @@ Manual steps
 
 Existing users
 ---
-* xcftp user
+* xcftp
     * aws/transfer/s-62e9213fc1384fea9/xcftp
     * xcftp-access-role
     * xcftp-access-policy
-* xcftp user-reader
+* xcftp-reader
     * aws/transfer/s-62e9213fc1384fea9/xcftp-reader
     * xcftp-access-role-read
     * xcftp-access-policy-read
-* xcftp user-uploader (only allow uploads into the upload folder in the S3 bucket)
+* xcftp-uploader (only allow uploads into the upload folder in the S3 bucket)
     * aws/transfer/s-62e9213fc1384fea9/xcftp-uploader
     * xcftp-access-role-upload
     * xcftp-access-policy-upload    
