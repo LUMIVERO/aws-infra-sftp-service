@@ -50,10 +50,12 @@ Connecting to the sftp server
 ---
 ``` 
 # use keys from onepass
-sftp -i xcftp_reader.pem xcftp@xcftp.lumivero.com 
+sftp -i xcftp-reader xcftp-reader@xcftp.lumivero.com
+sftp -i xcftp-uploader xcftp-uploader@xcftp.lumivero.com 
 
 # use password from onepass
-sftp xcftp-reader@xcftp.lumivero.com 
+sftp xcftp-reader@xcftp.lumivero.com
+sftp xcftp-uploader@xcftp.lumivero.com 
 ```
 
 Confluence page
